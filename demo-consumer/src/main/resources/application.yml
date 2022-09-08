@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: demo-consumer
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: project
+  cloud:
+    config:
+      enabled: false
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+server:
+  port: 8002
+
+logging:
+  level:
+    com.galaxy.heros.feign: debug
+
+feign:
+  # open httpclient
+  httpclient:
+    enabled: true
+  # open gzip
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+

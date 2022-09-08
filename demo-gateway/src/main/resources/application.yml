@@ -1,0 +1,33 @@
+server:
+  port: 9992
+spring:
+  application:
+    name: demo-gateway
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: project
+  cloud:
+    config:
+      enabled: false
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+    loadbalancer:
+      ribbon:
+        enable: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: demo-consumer   # Guaranteed to be unique
+          uri: lb://demo-consumer
+          predicates:
+            - Path=/**
+
+
